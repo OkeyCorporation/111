@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Example</title>
+</head>
+<body>
+
+<h1>Введите что-то:</h1>
+<input type="text" id="userInput" placeholder="Напишите что-то">
+<button onclick="saveAndDisplay()">Сохранить и отобразить</button>
+
+<p id="displayText"></p>
+
+<script>
+    function saveAndDisplay() {
+        var userInput = document.getElementById('userInput').value;
+        
+        // Сохраняем введенные данные в cookie
+        // Сохраняем введенные данные в cookie с указанием домена и пути
+document.cookie = "userText=" + userInput + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/111; domain=okeycorporation.github.io";
+
+        
+        // Отображаем введенные данные
+        displaySavedText();
+    }
+
+    function getCookie(name) {
+        var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        if (match) return match[2];
+    }
+
+    function displaySavedText() {
+        var savedText = getCookie('userText');
+        var displayElement = document.getElementById('displayText');
+        
+        // Отображаем текст пользователя
+        displayElement.textContent = "Текст пользователя: " + (savedText || "нет данных");
+    }
+
+    // При загрузке страницы отобразим сохраненный текст
+    displaySavedText();
+</script>
+
+</body>
+</html>
